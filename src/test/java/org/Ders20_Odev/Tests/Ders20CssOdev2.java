@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import java.net.MalformedURLException;
@@ -144,5 +145,8 @@ public void submitClick(){
         Assert.assertEquals(text, "45");
     }
 
-
+    @AfterSuite
+    public void close() {
+        webDriver.quitDriver();
+    }
 }

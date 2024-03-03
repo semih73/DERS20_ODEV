@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
@@ -15,6 +16,7 @@ public class Ders20CssOdev1 {
     public static WebDriver driver;
     Driver webDriver = new Driver();
     PropertyManager propertyManager = new PropertyManager();
+
 
     @BeforeSuite
     public void CssOdev1() throws MalformedURLException {
@@ -43,14 +45,19 @@ public class Ders20CssOdev1 {
     @Test(priority = 3)
     public void clickMeClick() {
         WebElement clickMe = driver.findElement(By.cssSelector(".col-md-6 div:nth-of-type(3) > .btn"));
-
         clickMe.click();
     }
+
     //Çıkan metni kontrol et
-    @Test (priority = 4)
-    public void metniOku(){
+    @Test(priority = 4)
+    public void metniOku() {
         WebElement okuMetin = driver.findElement(By.cssSelector("#dynamicClickMessage"));
-        String Metin=okuMetin.getText();
+        String Metin = okuMetin.getText();
         Assert.assertEquals(Metin, "You have done a dynamic click");
+    }
+
+    @AfterSuite
+    public void close() {
+        webDriver.quitDriver();
     }
 }
